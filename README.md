@@ -25,7 +25,8 @@ One can search, navigate, and modify data using a parser. It’s versatile and s
 8) Visualize Product Data using a Bar Chart
 
 ### Program:
-```PYTHON
+
+```
 import requests
 from bs4 import BeautifulSoup
 import re
@@ -49,11 +50,23 @@ def get_amazon_products(search_query):
     products_data = []  # List to store product information
 
     if response.status_code == 200:
-        /* TYPE YOUR CODE HERE
+        soup = BeautifulSoup(response.content, 'html.parser')
+        results = soup.find_all('div', {'data-component-type': 's-search-result'})
+
+        for result in results:
+            title = result.find('span', {'class': 'a-size-medium'})
+            price = result.find('span', {'class': 'a-offscreen'})
+
+            if title and price:
+                products_data.append({
+                    'Product': title.text.strip(),
+                    'Price': price.text.strip()
+                })
 
     return sorted(products_data, key=lambda x: convert_price_to_float(x['Price']))
 
-search_query = input('Enter product to search on Amazon: ')
+# Example product to search
+search_query = 'smartphone'
 products = get_amazon_products(search_query)
 
 # Displaying product data using a bar chart
@@ -71,9 +84,9 @@ if products:  # Check if products list is not empty
     plt.show()
 else:
     print('No products found.')
-
 ```
 
 ### Output:
+![image](https://github.com/MaithreyanDinakaran/WDM_EXP8/assets/119104032/c003e9d9-8120-4abf-8d81-f3093e2ebc3a)
 
 ### Result:
