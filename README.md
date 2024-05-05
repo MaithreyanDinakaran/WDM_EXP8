@@ -90,3 +90,4 @@ else:
 ![image](https://github.com/MaithreyanDinakaran/WDM_EXP8/assets/119104032/c003e9d9-8120-4abf-8d81-f3093e2ebc3a)
 
 ### Result:
+Thus, To perform Web Scraping on Amazon using (smartphone) Python has been executed successfully.
